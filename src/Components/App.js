@@ -1,57 +1,38 @@
 import React from 'react';
 import './App.css';
 import Routes from './Routes';
+import {Forgot, Update} from '../Components';
 import {Button, Alert, Card, Row, Col, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { IoPersonCircleOutline } from 'react-icons/io5';
-import {FaUserCheck, FaUserEdit} from 'react-icons/fa';
-import ReactTouchEvents from "react-touch-events";
+import Navbar from './Navbar/Navbar';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 class App extends React.Component{
 
-    handleTap = () => {
-        console.log('Touch worked!');
-    }
-
     render(){
         return (
-            <div className="background">
-                <div className="banner">
-                    <img alt="logo" src="/logo3.png" className="Logo" style={{marginTop:20, marginLeft:20}}/>
+            <div className="App">
+                <Navbar />
+                <div className = "intro1">
+                    <h1>Iochord Active Directory</h1>
                 </div>
-                <div style={{textAlign:'center', overflow:'hidden'}}>
-                    <Container>
-                    <Row>
-                        <Col>
-                            <div style={{marginTop: 200}} onClick={() => alert('Click!')}>
-                                
-                                 
-                                <Card style={{color: '#000', height:180, width:280, borderRadius: 8, borderBottomWidth: 2, borderRightWidth:2, alignItems:'center', textAlign:'center'}}>
-                                    <Card.Body>
-                                        <Card.Title>
-                                            <Card.Text>Forgot PW</Card.Text>
-                                            <FaUserCheck color="#9facc9" size="80"/>
-                                        </Card.Title>
-                                    </Card.Body>
-                                </Card>
-                                
-                            </div>
-                        </Col>
-                        <Col>
-                            <div style={{marginTop: 200}}>
-                                <Card style={{color: '#000', height:180, width:280, borderRadius: 8, borderBottomWidth: 2, borderRightWidth:2, alignItems:'center',  textAlign:'center'}}>
-                                    <Card.Body>
-                                        <Card.Title>
-                                            <Card.Text>Change PW</Card.Text>
-                                            <FaUserEdit color="#9facc9" size="80"/>
-                                        </Card.Title>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        </Col>
-                    </Row>
-                    </Container>
+                <div className = "intro2">
+                    <h2>Password Center</h2>
                 </div>
+                <Router>
+                    <div className = "Buttons">
+                        <Link to="/forgot"><Button style={{height:60, marginRight:20, background:'#435183'}}>
+                            Forgot Password
+                        </Button></Link>
+                        <Link to="/update"><Button style={{height:60, marginLeft:20, background:'#435183'}}>
+                            Reset Password
+                        </Button></Link>
+                    </div>
+
+                    <Route exact path = '/forgot' component={Forgot} />
+                    <Route exact path = '/update' component={Update} />
+
+                </Router>
             </div>
         );
     }
