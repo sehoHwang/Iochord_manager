@@ -50,7 +50,7 @@ class Update extends React.Component{
                         <Button variant="secondary" type="submit"
                             onClick={() => this.handleSubmit()}
                         >
-                            Reset
+                            Blank
                         </Button>
                     </div>
                 </Form>

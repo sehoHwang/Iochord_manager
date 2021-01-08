@@ -17,15 +17,15 @@ class App extends React.Component{
                     <h1>Iochord Active Directory</h1>
                 </div>
                 <div className = "intro2">
-                    <h2>Password Center</h2>
+                    <h2>User Information System</h2>
                 </div>
                 <Router>
                     <div className = "Buttons">
-                        <Link to="/forgot"><Button style={{height:60, marginRight:20, background:'#435183'}}>
-                            Forgot Password
-                        </Button></Link>
-                        <Link to="/update"><Button style={{height:60, marginLeft:20, background:'#435183'}}>
+                        <Link to="/forgot"><Button style={{height:60,width:120, marginRight:20, background:'#435183'}}>
                             Reset Password
+                        </Button></Link>
+                        <Link to="/update"><Button style={{height:60, width:120, marginLeft:20, background:'#435183'}}>
+                            Blank
                         </Button></Link>
                     </div>
 

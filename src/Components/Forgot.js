@@ -5,11 +5,13 @@ import './App.css';
 import axios from 'axios';
 
 var current = '';
+var result = '';
 
 class Forgot extends React.Component{
 
     state={
         id: '',
+        result: '',
     }
 
     handleChange = (event) => {
@@ -24,10 +26,17 @@ class Forgot extends React.Component{
 
     pushPassword = async() => {
         //const { id } = this.state.id;
+        
         console.log(this.state.id);
-        await axios.get('http://172.26.127.17:5000/password?id='+current)
+        await axios.post('http://192.168.11.84:5000/password?id='+current)
         .then(res => {
-            
+            result = res.data;
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+        .finally(() => {
+            alert(result)
         })
         
     }
@@ -44,7 +53,7 @@ class Forgot extends React.Component{
                         />
                         <Form.Text >귀하의 계정을 입력해주세요</Form.Text>
                     </Form.Group>
-                    <div style={{textAlign:'center', marginBottom:20}}><Button variant="secondary" type="submit" onClick={()=>this.handleSubmit(this.state.id)}>Find</Button></div>
+                    <div style={{textAlign:'center', marginBottom:20}}><Button variant="secondary" type="submit" onClick={()=>this.handleSubmit(this.state.id)}>Reset</Button></div>
                 </Form>
             </div>
         );
