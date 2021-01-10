@@ -11,7 +11,7 @@ class App extends React.Component{
 
     render(){
         return (
-            <div className="App">
+            /*<div className="App">
                 <Navbar />
                 <div className = "intro1">
                     <h1>Iochord Active Directory</h1>
@@ -33,7 +33,9 @@ class App extends React.Component{
                     <Route exact path = '/update' component={Update} />
 
                 </Router>
-            </div>
+            </div>*/
+
+            <Routes />
         );
     }
 }
