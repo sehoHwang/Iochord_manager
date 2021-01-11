@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Routes from './Routes';
-import {Forgot, Update} from '../Components';
+import {Reset, Update} from '../Components';
 import {Button, Alert, Card, Row, Col, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './Navbar/Navbar';

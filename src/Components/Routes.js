@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Welcome from './Welcome';
-import Forgot from './Forgot';
+import Reset from './Reset';
 import Update from './Update';
+import UpdateIP from './UpdateIP';
 import Certification from './Certification';
 
 class Routes extends React.Component{
@@ -12,9 +13,10 @@ class Routes extends React.Component{
         <Router>
             <Switch>
                 <Route exact path='/' component={Welcome} />
-                <Route exact path='/forgot' component={Forgot} />
+                <Route exact path='/reset' component={Reset} />
                 <Route exact path='/update' component={Update} />
                 <Route exact path='/certification' component={Certification} />
+                <Route exact path='/updateIP' component={UpdateIP} />
             </Switch>
         </Router>
         );

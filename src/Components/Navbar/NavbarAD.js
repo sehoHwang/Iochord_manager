@@ -8,7 +8,7 @@ class NavbarAD extends React.Component{
 
     render(){
         return(
-            <nav className="NavbarItems">
+            <nav className="ADNavbarItems">
                 <Link to={{
                     pathname: `/`,
                     state: {
@@ -18,7 +18,7 @@ class NavbarAD extends React.Component{
                 ><img src="/logo4.png" height='60' style={{marginLeft:20}}/></Link>
                 <div className="alignRight">
                     <div style={{display:'inline-flex', marginRight:20}}>
-                        <a style={{color:'#cec9d4', fontSize:16,fontWeight:'bold', paddingLeft: 20}}>관리자 모드 ON</a>
+                        <a style={{color:'#93aaf5', fontSize:17,fontWeight:'bold', paddingLeft: 20}}>관리자 모드 ON</a>
                     </div>
                     <div style={{display:'inline-flex', marginRight:20}}>
                         <Link to={{
