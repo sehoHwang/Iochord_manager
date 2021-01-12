@@ -22,7 +22,7 @@ class NavbarAD extends React.Component{
                     </div>
                     <div style={{display:'inline-flex', marginRight:20}}>
                         <Link to={{
-                            pathname: `/`,
+                            pathname: `/certification`,
                             state: {
                                 currentAD: ''
                             }

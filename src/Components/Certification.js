@@ -2,11 +2,12 @@ import React from 'react';
 import './App.css';
 import Routes from './Routes';
 import {Reset, Update} from '../Components';
-import {Button, Alert, Card, Row, Col, Form} from 'react-bootstrap';
+import {Button, Card, Row, Col, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './Navbar/Navbar';
 import { BrowserRouter as Router, Route, Link, Switch, withRouter} from 'react-router-dom';
 import axios from 'axios';
+import {Alert} from 'reactstrap';
 
 
 class Certification extends React.Component{
@@ -14,6 +15,13 @@ class Certification extends React.Component{
         adID: "",
         adPassword: "",
         currentAD: "",
+        visible: false
+    }
+
+    toggle(){
+        this.setState({
+            visible: !this.state.visible
+        })
     }
 
     handleAdID = (event) => {
@@ -39,6 +47,7 @@ class Certification extends React.Component{
     }
 
     confirmAdmin = async() => {
+        
         var result = "";
         const adID = this.state.adID;
         console.log(adID);
@@ -47,16 +56,25 @@ class Certification extends React.Component{
             result = res.data;
             console.log(result);
             if(result){
-                this.setState({currentAD: adID});
+                this.setState({
+                    currentAD: adID
+                });
+
             }
+            
         })
         .catch(function(err){
             console.log('err + ' + err);
         })
         .finally(() => {
-           alert(result);
+            if(this.state.currentAD){
+                alert('관리자 인증이 완료되었습니다.')
+                this.goToMain();
+            }    
+            else
+                alert('일치하는 관리자가 없습니다.')
         })
-        this.goToMain();
+        
     }
     
 
@@ -91,6 +109,7 @@ class Certification extends React.Component{
                         </Form.Group>
                         <div style={{textAlign:'center', marginBottom:20}}><Button variant="secondary" type="submit" onClick={this.handleSubmit}>Confirm</Button></div>
                     </Form>
+                    <Alert color = "primary" isOpen={this.state.visible} toggle={this.toggle.bind(this)}>관리자 인증이 완료되었습니다.</Alert>
                 </div>
             </div>
         );

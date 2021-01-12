@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Routes from './Routes';
-import {Reset, Update, UpdateIP} from '../Components';
+import {Reset, Update, UpdateIP, UpdateDN} from '../Components';
 import {Button, Alert, Card, Row, Col, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Navbar, NavbarAD} from './Navbar';
@@ -67,12 +67,40 @@ class Welcome extends React.Component{
                                     Change IP
                                 </Button></Link>
 
-                                <Link to="/updateIP"><Button style={{height:60, width:120, marginLeft:20, background:'#7080b8', borderWidth:0}}>
+                                <Link to={{
+                                    pathname: `/updateDN`,
+                                    state: {
+                                        currentAD: this.state.currentAD
+                                    }
+                                }}
+                                ><Button style={{height:60, width:120, marginLeft:20, background:'#7080b8', borderWidth:0}}>
                                     Change Domain
                                 </Button></Link>
                             </div>
+                            <div className = "Buttons">
+                                <Link to={{
+                                    pathname: `/updateIP`,
+                                    state: {
+                                        currentAD: this.state.currentAD
+                                    }
+                                }}
+                                >
+                                <Button style={{height:60,width:120, marginRight:20, background:'#92a1d6', borderWidth:0}}>
+                                    Change admin Dn
+                                </Button></Link>
+
+                                <Link to={{
+                                    pathname: `/updateDN`,
+                                    state: {
+                                        currentAD: this.state.currentAD
+                                    }
+                                }}
+                                ><Button style={{height:60, width:120, marginLeft:20, background:'#92a1d6', borderWidth:0}}>
+                                    Change admin Pw
+                                </Button></Link>
+                            </div>
                             <Switch>
-                                <Route exact path = '/reset' component={Reset} />
+                                <Route exact path = '/updateDN' component={UpdateDN} />
                                 <Route exact path = '/updateIP' component={UpdateIP} />
                             </Switch>
                         </div> :
@@ -90,7 +118,7 @@ class Welcome extends React.Component{
                                     Reset Password
                                 </Button></Link>
                                 <Link to="/update/"><Button style={{height:60, width:120, marginLeft:20, background:'#435183'}}>
-                                    Find password
+                                    Update password
                                 </Button></Link>
                             </div>
                             <Switch>

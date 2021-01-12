@@ -5,6 +5,7 @@ import Welcome from './Welcome';
 import Reset from './Reset';
 import Update from './Update';
 import UpdateIP from './UpdateIP';
+import UpdateDN from './UpdateDN';
 import Certification from './Certification';
 
 class Routes extends React.Component{
@@ -17,6 +18,7 @@ class Routes extends React.Component{
                 <Route exact path='/update' component={Update} />
                 <Route exact path='/certification' component={Certification} />
                 <Route exact path='/updateIP' component={UpdateIP} />
+                <Route exact path='/updateDN' component={UpdateDN} />
             </Switch>
         </Router>
         );
