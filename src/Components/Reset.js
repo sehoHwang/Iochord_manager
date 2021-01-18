@@ -6,7 +6,6 @@ import axios from 'axios';
 import {withRouter} from 'react-router-dom'
 import {Navbar, NavbarAD} from './Navbar';
 
-var current = '';
 var result = '';
 
 class Reset extends React.Component{
@@ -63,13 +62,19 @@ class Reset extends React.Component{
         await axios.post('http://192.168.11.84:5000/password?id='+this.state.id+'&email='+this.state.email)
         .then(res => {
             result = res.data;
-            
+            console.log('result : ' + result);
+            if(result ==='성공'){
+                alert('초기화된 암호가 메일로 전송되었습니다.')
+            }
+            else{
+                alert('정보가 일치하지 않습니다.')
+            }
         })
         .catch(function(err){
             console.log(err);
         })
         .finally(() => {
-            alert(result);
+            
         })
         this.goToMain();
     }

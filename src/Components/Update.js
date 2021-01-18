@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import {Navbar, NavbarAD} from './Navbar';
+import {Navbar} from './Navbar';
 import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 
@@ -56,15 +56,18 @@ class Update extends React.Component{
         await axios.post('http://192.168.11.84:5000/newpassword?id='+this.state.id+'&password='+this.state.password+'&newpassword='+this.state.newpassword)
         .then(res => {
             result = res.data;
-            if(!result){
-                alert('일치하는 정보가 없습니다')
+            if(result ==='귀하의 암호가 변경되었습니다.'){
+                alert('귀하의 암호가 변경되었습니다.')
+            }
+            else{
+                alert('정보가 일치하지 않습니다.')
             }
         })
         .catch(function(err){
             console.log(err);
         })
         .finally(() => {
-            alert(result);
+            //alert(result);
         })
         this.goToMain();
     }

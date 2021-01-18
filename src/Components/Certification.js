@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
-import Routes from './Routes';
-import {Reset, Update} from '../Components';
-import {Button, Card, Row, Col, Form} from 'react-bootstrap';
+import {Button, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from './Navbar/Navbar';
 import { BrowserRouter as Router, Route, Link, Switch, withRouter} from 'react-router-dom';
@@ -54,8 +52,8 @@ class Certification extends React.Component{
         await axios.get('http://192.168.11.84:5000/admin?adminID='+this.state.adID+'&adminPW='+this.state.adPassword)
         .then(res => {
             result = res.data;
-            console.log(result);
-            if(result){
+            console.log('result : '+result);
+            if(result === 'OK'){
                 this.setState({
                     currentAD: adID
                 });
@@ -104,6 +102,7 @@ class Certification extends React.Component{
                             <Form.Control placeholder="Input your admin Password"
                                 defaultValue={this.state.adPassword}
                                 onChange={this.handleAdPW}
+                                type="password"
                             />
                             <Form.Text >관리자 암호를 입력해주세요</Form.Text>
                         </Form.Group>

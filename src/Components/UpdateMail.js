@@ -6,15 +6,18 @@ import {NavbarAD} from './Navbar';
 import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 
-class UpdateIP extends React.Component{
+
+class UpdateMail extends React.Component{
 
     state={
-        address: '',
+        mail: '',
+        password: '',
         currentAD: '',
         loading: false,
     }
 
     componentDidMount = () => {
+        console.log('받아온 currentAD : '+this.props.location.state.currentAD)
         if(!this.props.location.state){
             this.setState({ loading : true})
             
@@ -28,16 +31,14 @@ class UpdateIP extends React.Component{
     
     }
 
-    goToMain = () => {
-        this.props.history.push({
-            pathname: '/',
-            state: {currentAD: this.state.currentAD}
-        })
+    handleMail = (event) => {
+        this.setState({mail: event.target.value});
     }
 
-    handleAddress = (event) => {
-        this.setState({address: event.target.value});
+    handlePassword = (event) => {
+        this.setState({password: event.target.value});
     }
+    
 
     handleSubmit = (e) => {
         e.preventDefault(); 
@@ -46,35 +47,55 @@ class UpdateIP extends React.Component{
 
     submitInfo = async() => {
         var result="";
-        await axios.post('http://192.168.11.84:5000/ip?address='+this.state.address)
+        await axios.post('http://192.168.11.84:5000/mail?mail='+this.state.mail+'&password='+this.state.password)
         .then(res => {
             result = res.data;
-            
+            console.log(result);
+            if(result ==='메일 정보가 변경되었습니다.'){
+                alert('메일 정보가 변경되었습니다.')
+            }
         })
         .catch(function(err){
             console.log(err);
         })
         .finally(() => {
-            alert(result);
+            //alert(result);
         })
         this.goToMain();
     }
 
+    goToMain = () => {
+        this.props.history.push({
+            pathname: '/',
+            state: {currentAD: this.state.currentAD}
+        })
+    }
+
     render(){
         return(
-            <div className="App">
+            <div className = "App">
                 <NavbarAD currentAD={this.state.currentAD}/>
                 <div className = "Form">
-                    
                     <Form>
                         <Form.Group>
-                            <Form.Label>New IP Address</Form.Label>
+                            <Form.Label>Email</Form.Label>
                             <Form.Control
+                                type="email"
                                 placeholder="Input your ID"
-                                defaultValue={this.state.address}
-                                onChange={this.handleAddress}
+                                defaultValue={this.state.id}
+                                onChange={this.handleMail}
                             />
-                            <Form.Text>변경하실 새로운 ip를 입력해주세요</Form.Text>
+                            <Form.Text>메일을 입력해주세요</Form.Text>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Email Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Input your Password"
+                                defaultValue={this.state.password}
+                                onChange={this.handlePassword}
+                                />
+                            <Form.Text>메일 비밀번호를 입력해주세요</Form.Text>
                         </Form.Group>
                         
                         <div style={{textAlign:'center', marginBottom:20}}>
@@ -92,4 +113,4 @@ class UpdateIP extends React.Component{
     }
 }
 
-export default withRouter(UpdateIP);
+export default withRouter(UpdateMail);

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Routes from './Routes';
 import {Reset, Update, UpdateIP, UpdateDN} from '../Components';
-import {Button, Alert, Card, Row, Col, Container} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Navbar, NavbarAD} from './Navbar';
 import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
@@ -63,7 +63,7 @@ class Welcome extends React.Component{
                                     }
                                 }}
                                 >
-                                <Button style={{height:60,width:120, marginRight:20, background:'#7080b8', borderWidth:0}}>
+                                <Button style={{height:60,width:120, marginRight:20, background:'#8798d4', borderWidth:0}}>
                                     Change IP
                                 </Button></Link>
 
@@ -73,32 +73,21 @@ class Welcome extends React.Component{
                                         currentAD: this.state.currentAD
                                     }
                                 }}
-                                ><Button style={{height:60, width:120, marginLeft:20, background:'#7080b8', borderWidth:0}}>
+                                ><Button style={{height:60, width:120, marginLeft:20,marginRight:20, background:'#8798d4', borderWidth:0}}>
                                     Change Domain
                                 </Button></Link>
-                            </div>
-                            <div className = "Buttons">
                                 <Link to={{
-                                    pathname: `/updateIP`,
+                                    pathname: `/updateADPW`,
                                     state: {
                                         currentAD: this.state.currentAD
                                     }
                                 }}
-                                >
-                                <Button style={{height:60,width:120, marginRight:20, background:'#92a1d6', borderWidth:0}}>
-                                    Change admin Dn
-                                </Button></Link>
-
-                                <Link to={{
-                                    pathname: `/updateDN`,
-                                    state: {
-                                        currentAD: this.state.currentAD
-                                    }
-                                }}
-                                ><Button style={{height:60, width:120, marginLeft:20, background:'#92a1d6', borderWidth:0}}>
+                                ><Button style={{height:60, width:120, marginLeft:20, background:'#8798d4', borderWidth:0}}>
                                     Change admin Pw
                                 </Button></Link>
+                                
                             </div>
+                            
                             <Switch>
                                 <Route exact path = '/updateDN' component={UpdateDN} />
                                 <Route exact path = '/updateIP' component={UpdateIP} />

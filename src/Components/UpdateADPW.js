@@ -6,10 +6,10 @@ import {NavbarAD} from './Navbar';
 import {withRouter} from 'react-router-dom'
 import axios from 'axios';
 
-class UpdateDN extends React.Component{
+class UpdateADPW extends React.Component{
 
     state={
-        domain: '',
+        dnpassword: '',
         currentAD: '',
         loading: false,
     }
@@ -35,8 +35,8 @@ class UpdateDN extends React.Component{
         })
     }
 
-    handleDomain = (event) => {
-        this.setState({domain: event.target.value});
+    handleDNPassword = (event) => {
+        this.setState({dnpassword: event.target.value});
     }
 
     handleSubmit = (e) => {
@@ -46,7 +46,9 @@ class UpdateDN extends React.Component{
 
     submitInfo = async() => {
         var result="";
-        await axios.post('http://192.168.11.84:5000/dn?domain='+this.state.domain)
+        console.log("보내기 전 비번 : " + this.state.dnpassword);
+        await axios.post('http://192.168.11.84:5000/dnpassword?dnpassword='+this.state.dnpassword)
+        
         .then(res => {
             result = res.data;
             
@@ -68,13 +70,13 @@ class UpdateDN extends React.Component{
                     
                     <Form>
                         <Form.Group>
-                            <Form.Label>New Domain</Form.Label>
+                            <Form.Label>New DN Password</Form.Label>
                             <Form.Control
                                 placeholder="Input your Domain"
-                                defaultValue={this.state.domain}
-                                onChange={this.handleDomain}
+                                defaultValue={this.state.dnpassword}
+                                onChange={this.handleDNPassword}
                             />
-                            <Form.Text>변경하실 새로운 도메인을 입력해주세요</Form.Text>
+                            <Form.Text>변경하실 새로운 DN 암호를 입력해주세요</Form.Text>
                         </Form.Group>
                         
                         <div style={{textAlign:'center', marginBottom:20}}>
@@ -93,4 +95,4 @@ class UpdateDN extends React.Component{
     }
 }
 
-export default withRouter(UpdateDN);
+export default withRouter(UpdateADPW);
